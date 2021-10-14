@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Stenography</title>
+    <link rel="stylesheet" href="hideimage.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <style>
+        select {
+            background-color: rgb(77, 77, 77);
+        }
+
+        body {
+            background-image: url('backround.jpg');
+            background-size: auto;
+            margin: 0;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        button {
+            background: black;
+            color: whitesmoke;
+            border-style: none;
+            padding: 6%;
+            border-radius: 0%;
+        }
+
+        button:hover {
+            background: whitesmoke;
+            color: black;
+            cursor: pointer;
+        }
+        canvas{
+            border-width: 1px;
+            border-style: solid;
+            border-color: rgba(245, 245, 245, 0.432);
+        }
+        #canvas5{
+            /* background-color: rgb(255, 255, 255); */
+        }
+    </style>
+
+</head>
+
+<body>
+    <!-- <h1>Image Stenography</h1> -->
+
+    <div style="background: rgba(0, 0, 0, 0.534); height: 110px;">
+        <img src="heading.png" width="250px" alt="" style="display: block; margin: auto; padding-top: 10px;">
+    </div>
+
+
+    <div style="display: flex; width: 80%; margin: auto; margin-top: 80px;">
+        <div>
+            <label for="select1">Sample Image 1:</label>
+            <select name="pets" id="select1" onchange="change1()">
+                <option value="1">Qatar</option>
+                <option value="2">Camel</option>
+                <option value="3">Dog</option>
+                <option value="4">UN</option>
+            </select>
+            <br>
+            <input type="file" id="file1" name="file1" accept="image/png, image/jpeg">
+            <canvas id="canvas1"></canvas>
+        </div>
+        <div>
+            <label for="select2">Sample Image 2:</label>
+            <select name="pets" id="select2" onchange="change2()">
+                <option value="2">Camel</option>
+                <option value="1">Qatar</option>
+                <option value="3">Dog</option>
+                <option value="4">UN</option>
+            </select>
+            <br>
+            <input type="file" id="file2" name="file2" accept="image/png, image/jpeg">
+            <canvas id="canvas2"></canvas>
+        </div>
+        <div style="margin: auto; margin-left: 100px; margin-right: 100px;">
+            <label for="bits" id="bit_label">Hidden bits: 2</label>
+            <br>
+            <input type="range" oninput="update()" id="bits" name="bits" min="0" max="8" step="1">
+            <button id="btn1">GENERATE</button>
+        </div>
+
+    </div>
+
+
+    <div style="display: flex; width: 100%; margin-top: 50px; margin-bottom: 50px;">
+        <div style="margin: auto; margin-left: 130px;">
+            <canvas id="canvas4"></canvas>
+        </div>
+        <div style="margin: auto; margin-right: 410px;">
+            <canvas id="canvas3"></canvas>
+        </div>
+    </div>
+
+    
+
+    <div style="display: flex; width: 80%; margin: auto; margin-top: 80px;">
+        <div>
+            <!-- <p>Distortion in the cover image:</p> -->
+            <canvas id="canvas5" style="opacity: 0;" ></canvas>
+        </div>
+        <div>
+            <p>Distortion in the hidden image:</p>
+            <canvas id="canvas6"></canvas>
+        </div>
+        <div style="margin: auto; margin-left: 100px; margin-right: 10px;">
+            <span id="mse1">MSE for cover image: 0</span><br>
+            <span id="mse2">MSE for hidden image: 0</span>
+        </div>
+
+    </div>
+
+
+    <script src="hideimage.js"></script>
+</body>
+
+</html>
