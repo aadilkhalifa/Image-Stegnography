@@ -15,7 +15,8 @@
         }
 
         body {
-            background-image: url('backround.jpg');
+            /* background-image: url('backround.jpg'); */
+            background-color: rgb(37, 37, 37);
             background-size: auto;
             margin: 0;
             font-family: 'Roboto', sans-serif;
@@ -25,8 +26,10 @@
             background: black;
             color: whitesmoke;
             border-style: none;
-            padding: 6%;
-            border-radius: 0%;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: bold;
+            margin-left: 30px;
         }
 
         button:hover {
@@ -39,8 +42,44 @@
             border-style: solid;
             border-color: rgba(245, 245, 245, 0.432);
         }
-        #canvas5{
+        .canvas5Div{
             /* background-color: rgb(255, 255, 255); */
+            display: none;
+        }
+        .link{
+            /* text-decoration: none; */
+            color: white;
+        }
+        .chooseFile{
+            margin-bottom: 20px;
+        }
+        footer * {
+            margin: 10px 0;
+        }
+        .firstDiv label {
+            margin-bottom: 5px;
+            font-size: small;
+        }
+
+        @media screen and (max-width: 800px) {
+
+        img {
+            width: 150px;
+        }
+        .div1 {
+            flex-direction: column;
+            align-items: center;
+        }
+        .firstDiv{
+            margin-top: 0;
+        }
+        canvas{
+            margin-bottom: 40px;
+        }
+        bar{
+            height: 60px;
+        }
+
         }
     </style>
 
@@ -49,72 +88,94 @@
 <body>
     <!-- <h1>Image Stenography</h1> -->
 
-    <div style="background: rgba(0, 0, 0, 0.534); height: 110px;">
-        <img src="heading.png" width="250px" alt="" style="display: block; margin: auto; padding-top: 10px;">
-    </div>
+    <bar class="topBar" style="background: rgba(0, 0, 0, 0.534); width: 100%; display: flex; 
+        justify-content: center; align-items: center; padding: 10px 0;"
+        >
+        <img src="heading.png" width="250px" alt="" >
+    </bar>
 
 
-    <div style="display: flex; width: 80%; margin: auto; margin-top: 80px;">
-        <div>
-            <label for="select1">Sample Image 1:</label>
-            <select name="pets" id="select1" onchange="change1()">
+    <div class="div1 firstDiv" style="display: flex; width: 100%; margin-top: 50px; justify-content: center; align-items: center; ">
+        
+        <div style=" display: flex; flex-direction: column; margin: 0 30px;">
+            <h3>Cover Image</h3>
+            <label for="select1">Samples:</label>
+            <select name="pets" id="select1" onchange="change1()" style="width: 50%;">
                 <option value="1">Qatar</option>
                 <option value="2">Camel</option>
                 <option value="3">Dog</option>
                 <option value="4">UN</option>
             </select>
             <br>
-            <input type="file" id="file1" name="file1" accept="image/png, image/jpeg">
+            <input class="chooseFile" type="file" id="file1" name="file1" accept="image/png, image/jpeg">
             <canvas id="canvas1"></canvas>
         </div>
-        <div>
-            <label for="select2">Sample Image 2:</label>
-            <select name="pets" id="select2" onchange="change2()">
+        <div style=" display: flex; flex-direction: column; margin: 0 30px;">
+            <h3>Hidden Image</h3>
+            <label for="select2">Samples:</label>
+            <select name="pets" id="select2" onchange="change2()" style="width: 50%;">
                 <option value="2">Camel</option>
                 <option value="1">Qatar</option>
                 <option value="3">Dog</option>
                 <option value="4">UN</option>
             </select>
             <br>
-            <input type="file" id="file2" name="file2" accept="image/png, image/jpeg">
+            <input class="chooseFile" type="file" id="file2" name="file2" accept="image/png, image/jpeg">
             <canvas id="canvas2"></canvas>
-        </div>
-        <div style="margin: auto; margin-left: 100px; margin-right: 100px;">
-            <label for="bits" id="bit_label">Hidden bits: 2</label>
-            <br>
-            <input type="range" oninput="update()" id="bits" name="bits" min="0" max="8" step="1">
-            <button id="btn1">GENERATE</button>
         </div>
 
     </div>
 
-
-    <div style="display: flex; width: 100%; margin-top: 50px; margin-bottom: 50px;">
-        <div style="margin: auto; margin-left: 130px;">
-            <canvas id="canvas4"></canvas>
+    <div style=" display: flex; justify-content: center; align-items: center; margin: 50px 0;">
+        <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+            <label for="bits" id="bit_label">Hidden bits: 2</label>
+            <input type="range" oninput="update()" id="bits" name="bits" min="0" max="8" step="1">
         </div>
-        <div style="margin: auto; margin-right: 410px;">
+        <button id="btn1">GENERATE</button>
+    </div>
+
+
+    <div class="div1" style="display: flex; width: 100%; margin: 50px 0; justify-content: center;">
+        <div style="margin: 0 30px;">
+            <h3>Resulting Image</h3>
             <canvas id="canvas3"></canvas>
+        </div>
+        <div style="margin: 0 30px;">
+            <h3>Extracted Hidden Image</h3>
+            <canvas id="canvas4"></canvas>
         </div>
     </div>
 
     
 
-    <div style="display: flex; width: 80%; margin: auto; margin-top: 80px;">
-        <div>
-            <!-- <p>Distortion in the cover image:</p> -->
-            <canvas id="canvas5" style="opacity: 0;" ></canvas>
+    <div class="div1" style="display: flex; width: 100%; justify-content: center; align-items: center;">
+
+        <div class="canvas5Div">
+            <p>Distortion in the cover image:</p>
+            <canvas id="canvas5" ></canvas>
         </div>
-        <div>
+
+        <div style="margin: 0 30px;">
             <p>Distortion in the hidden image:</p>
             <canvas id="canvas6"></canvas>
         </div>
-        <div style="margin: auto; margin-left: 100px; margin-right: 10px;">
-            <span id="mse1">MSE for cover image: 0</span><br>
+        <div style=" width: 300px; margin: 0 30px; display: flex; flex-direction: column;">
+            <span id="mse1">MSE for cover image: 0</span>
             <span id="mse2">MSE for hidden image: 0</span>
         </div>
 
     </div>
+
+    <footer style="height: 50vh; display: flex; flex-direction: column; justify-content: center; align-items: center; 
+        background-color: rgb(26, 26, 26); margin-top: 100px; padding: 0 30px; text-align: center;">
+        <p>
+            This is a visual demonstration of Image Stenography.
+        </p>
+        <p>
+            You can visit <a class="link" href="https://en.wikipedia.org/wiki/Steganography">Wikipedia</a> to learn more about Stenography.
+        </p>
+        <a class="link" href="https://github.com/aadilkhalifa/aadilkhalifa.github.io/tree/main/stegnography">Source Code</a>
+    </footer>
 
 
     <script src="hideimage.js"></script>

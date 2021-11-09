@@ -207,10 +207,10 @@ const calculate_distortion = function (ev) {
     for (let i = 0; i < arr1.length; i = i + 1) {
         mse1=mse1+(arr1[i]-arr2[i])**2;
         arr1[i] = arr1[i]-arr2[i];
-        if (arr1[i]<0){arr1[i]=-arr1[i]}
-        // arr1[i] = 255
+        
+        // arr1[i] = arr1[i]*30;
 
-        // if (arr1[i]>0){arr1[i]=255}
+        // if (arr1[i]>255){arr1[i]=255}
         // arr1[i]=100
     }
     mse1=mse1/arr1.length
